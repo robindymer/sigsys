@@ -1,7 +1,7 @@
 n = 10;
 ripple = 3;
 fc = 8000;
-fs = 24000; % sample freq.
+fs = 16000; % sample freq.
 
 % Elliptic filter - steep roll-off, ripple in pass- and stopband
 % But we're satisfied with chebyshev I
@@ -45,6 +45,15 @@ figure('Name', 'Sampled output signal')
 plot(t_sample, sampled_output)
 
 % FFT
-Y = fft(sampled_output);
+N = length(sampled_output); % Number of samples
+
+X = fft(sampled_output); % We'll get the N corresponding freq. values
+fvector = (0:N-1)/N*fs; % Frequency
+disp(length(fvector))
 figure('Name', 'FFT')
-plot(t_sample, Y)
+plot(fvector*1e-3, abs(X)/max(X)) % Hz -> kHz and normalize amplitude
+xlim([0 fs/2*1e-3])
+xlabel('Frequency (kHz)')
+ylabel('Amplitude')
+title('Discrete Fourier Transform')
+disp(fvector(

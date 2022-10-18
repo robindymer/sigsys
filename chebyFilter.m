@@ -3,7 +3,7 @@ ripplePass = 3; % dB
 rippleStop = 72.25; % dB (0.5/2^11 -> dB)
 wp = 8000*2*pi; % Extract components 'til 8 kHz
 ws = 11000*2*pi; % No components in range 8 - 11 kHz
-fs = 23000; % sample freq.
+fs = 20000; % sample freq.
 
 % Calculate order and cutoff angular frequency
 [n, Wp] = cheb1ord(wp, ws, ripplePass, rippleStop,'s');
@@ -23,7 +23,7 @@ ct_filter = tf(numerator, denominator);
 % continous time
 f1 = 8e3;
 f2 = 12e3;
-t_resolution = 100; % Make it CT
+t_resolution = 100; % Make it approximately CT
 
 t_end = 0.002;
 t = 0:1/(t_resolution*fs):1; % 0.2 förut

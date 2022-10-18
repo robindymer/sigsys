@@ -1,8 +1,12 @@
 % Parameters for the system
+% G = 0.8;
+% R = 1000;
+% C = 1e-9;
+% K = 1;
 G = 0.8;
-R = 1000;
+R = 828000;
 C = 1e-9;
-K = 1;
+K = 0.32;
 
 % Define the systems
 sys3 = tf([-1, 0, 0], [1, G*K/(R*C), (G/(R*C))^2]); % HP

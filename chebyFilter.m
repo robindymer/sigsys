@@ -1,9 +1,8 @@
-% n = 10;
 ripplePass = 3; % dB
-rippleStop = 72.25; % dB (0.5/2^11 -> dB)
+rippleStop = -72.25; % dB (0.5/2^11 -> dB)
 wp = 8000*2*pi; % Extract components 'til 8 kHz
 ws = 11000*2*pi; % No components in range 8 - 11 kHz
-fs = 20000; % sample freq.
+fs = 24000; % sample freq.
 
 % Calculate order and cutoff angular frequency
 [n, Wp] = cheb1ord(wp, ws, ripplePass, rippleStop,'s');
@@ -14,11 +13,9 @@ fs = 20000; % sample freq.
 ct_filter = tf(numerator, denominator);
 
 % Plot magnitude and freq.
-% [a, b] = cheby1(n, ripplePass, Wp, 'low', 's');
 % figure('Name', 'Magnitude and frequency of chebyshev I');
 % freqs(numerator, denominator)
-% disp(numerator)
-% disp(denominator)
+
 
 % continous time
 f1 = 8e3;
@@ -63,7 +60,7 @@ ct_sampled = sin(2*pi*f1.*t_sampled) + sin(2*pi*f2.*t_sampled);
 N = length(ct_sampled); % Number of samples
 X = fft(ct_sampled); % We'll get the N corresponding freq. values
 fvector = (0:N-1)/N*fs; % Frequency
-disp(length(fvector))
+disp((N))
 figure('Name', 'FFT')
 plot(fvector/1e3, abs(X)/max(X)) % Hz -> kHz and normalize amplitude
 xlim([0 fs/2e3])

@@ -19,7 +19,7 @@ ct_filter = tf(numerator, denominator);
 
 % continous time
 f1 = 8e3;
-f2 = 12e3;
+f2 = 11e3;
 t_resolution = 100; % Make it approximately CT
 
 t_end = 0.002;
